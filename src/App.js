@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+//import NavigationBar from './components/NavigatonBar';
+import CustomNavbar from './components/CustomNavbar'
+import Footer from './components/Footer'
+import Posts from './components/Posts';
+import { Provider } from 'react-redux'
+import store from './redux'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { RUTAS } from './helpers/rutas';
+import { BrowserRouter, Routes } from "react-router-dom";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Provider store={store}>
+        <div className="App">
+          {/* <NavigationBar /> */}
+          <CustomNavbar />
+          <div className="Content">
+            <Routes>
+              {RUTAS}
+            </Routes>
+          </div>
+          <Posts />
+        </div>
+        <Footer />
+      </Provider>
+    </BrowserRouter>
   );
 }
 
